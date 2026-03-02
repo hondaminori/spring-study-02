@@ -1,0 +1,27 @@
+{
+  "name": "Spring Boot Study Environment",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-spring-boot-dashboard",
+        "vscjava.vscode-spring-initializr",
+        "scheck-style.checkstyle"
+      ],
+      "settings": {
+        "java.configuration.runtimes": [
+          {
+            "name": "JavaSE-17",
+            "path": "/usr/local/sdkman/candidates/java/current",
+            "default": true
+          }
+        ],
+        "checkstyle.configFile": "/workspaces/${localWorkspaceFolderBasename}/checkstyle.xml"
+      }
+    }
+  },
+  "remoteUser": "vscode"
+}
