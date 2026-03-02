@@ -6,24 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.demo.todo.service.tasks.TaskService;
+
 @Controller
 public class TasksController {
+    private final TaskService taskService = new TaskService();
+
     @GetMapping("/tasks")
     public String list(Model model) {
-        var task1 = new TaskDTO(
-            1L,
-            "Spring Bootを学ぶ" ,
-            "TODOアプリケーションを作ってみる" ,
-            "TODO"
-        );
-        var task2 = new TaskDTO(
-            2L,
-            "Spring Securtyを学ぶ" ,
-            "ログインを作ってみる" ,
-            "TODO"
-        );
-        var taskList = List.of(task1, task2);
-        model.addAttribute("taskList", taskList);
+        model.addAttribute("taskList", taskService.find());
         return "tasks/list";
     }
 }
