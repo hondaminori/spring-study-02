@@ -12,13 +12,6 @@
         "scheck-style.checkstyle"
       ],
       "settings": {
-        "java.configuration.runtimes": [
-          {
-            "name": "JavaSE-17",
-            "path": "/usr/local/sdkman/candidates/java/current",
-            "default": true
-          }
-        ],
         "checkstyle.configFile": "/workspaces/${localWorkspaceFolderBasename}/checkstyle.xml"
       }
     }
