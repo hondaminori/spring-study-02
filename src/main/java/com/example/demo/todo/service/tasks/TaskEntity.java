@@ -4,6 +4,6 @@ public record TaskEntity (
     long id,
     String summary,
     String description,
-    TaskStatus taskStatus
+    TaskStatus status
 )
 {}

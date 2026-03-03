@@ -21,7 +21,7 @@
                 <tr th:each="task: ${taskList}" th:Object="${task}">
                     <td th:text="*{id}"></td>
                     <td th:text="*{summary}"></td>
-                    <td th:text="*{taskStatus}"></td>
+                    <td th:text="*{status}"></td>
                 </tr>
             </tbody>
         </table>
