@@ -4,22 +4,16 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.todo.repository.tasks.TaskRepository;
+
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class TaskService {
+    private final TaskRepository taskRepository;
+
     public List<TaskEntity> find() {
-        return List.of (
-            new TaskEntity(
-                1L,
-                "Spring Bootを学ぶ" ,
-                "TODOアプリケーションを作ってみる" ,
-                TaskStatus.TODO
-            ),
-            new TaskEntity(
-                2L,
-                "Spring Securtyを学ぶ" ,
-                "ログインを作ってみる" ,
-                TaskStatus.DOING
-            )
-        );
+        return taskRepository.select();
     }
 }
