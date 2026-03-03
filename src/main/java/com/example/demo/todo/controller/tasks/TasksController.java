@@ -6,13 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.todo.service.tasks.TaskService;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
+@RequiredArgsConstructor
 public class TasksController {
     private final TaskService taskService;
-
-    public TasksController (TaskService taskService) {
-        this.taskService = taskService;
-    }
 
     @GetMapping("/tasks")
     public String list(Model model) {
