@@ -2,6 +2,9 @@ package com.example.demo.todo.service.tasks;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class TaskService {
     public List<TaskEntity> find() {
         return List.of (
