@@ -1,8 +1,10 @@
 package com.example.demo.todo.repository.tasks;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.example.demo.todo.service.tasks.TaskEntity;
@@ -11,5 +13,8 @@ import com.example.demo.todo.service.tasks.TaskEntity;
 public interface TaskRepository {
 
     @Select("SELECT id, summary, description, status FROM tasks;")
-    List<TaskEntity> select();    
+    List<TaskEntity> select();
+
+    @Select("SELECT id, summary, description, status FROM tasks WHERE id = #{taskId}")
+    Optional<TaskEntity> selectById(@Param("taskId") long taskId);
 }
