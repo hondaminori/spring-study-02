@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.todo.repository.tasks.TaskRepository;
-
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -20,5 +20,10 @@ public class TaskService {
 
     public Optional<TaskEntity> findById(long taskId) {
         return taskRepository.selectById(taskId);
+    }
+
+    @Transactional
+    public void create(TaskEntity newEntity) {
+        taskRepository.insert(newEntity);
     }
 }
