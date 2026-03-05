@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,13 +23,15 @@ public class TasksController {
     private final TaskService taskService;
 
     @GetMapping
-    public String list(Model model) {
-        var taskList = taskService.find()
-                .stream()
-                .map(TaskDTO::toDTO)
-                .toList();
+    public String list(TaskSearchForm searchForm, Model model) {
+
+        var taskList = taskService.find(searchForm.toEntity())
+            .stream()
+            .map(TaskDTO::toDTO)
+            .toList();
 
         model.addAttribute("taskList", taskList);
+        model.addAttribute("searchDTO", searchForm.toDTO());
         return "tasks/list";
     }
 
@@ -78,7 +81,15 @@ public class TasksController {
             model.addAttribute("mode", "EDIT");
             return "tasks/form";
         }
+        var entity = form.toEntity(id);
+        taskService.update(entity);
         return "redirect:/tasks/{id}";
+    }
+
+    @DeleteMapping("{id}")
+    public String delete(@PathVariable("id") long id) {
+        taskService.delete(id);
+        return "redirect:/tasks";
     }
 }
 

@@ -14,8 +14,8 @@ import lombok.RequiredArgsConstructor;
 public class TaskService {
     private final TaskRepository taskRepository;
 
-    public List<TaskEntity> find() {
-        return taskRepository.select();
+    public List<TaskEntity> find(TaskSearchEntity searchEntity) {
+        return taskRepository.select(searchEntity);
     }
 
     public Optional<TaskEntity> findById(long taskId) {
@@ -25,5 +25,15 @@ public class TaskService {
     @Transactional
     public void create(TaskEntity newEntity) {
         taskRepository.insert(newEntity);
+    }
+
+    @Transactional
+    public void update(TaskEntity entity) {
+        taskRepository.update(entity);    
+    }
+
+    @Transactional
+    public void delete(long id) {
+        taskRepository.delete(id);
     }
 }
